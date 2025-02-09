@@ -5,13 +5,11 @@
 
 namespace fs = std::filesystem;
 
-FilesReader::FilesReader(Properties* properties) {
-    this->properties = properties;
-}
+FilesReader::FilesReader(Properties* properties) : properties(properties) {}
 
-void FilesReader::loadData(){
+void FilesReader::loadData() {
     const std::string folderPath = properties->getPath();
-    
+
     if (!fs::exists(folderPath)) {
         throw std::runtime_error("Folder does not exists: " + folderPath);
     }
@@ -33,7 +31,6 @@ void FilesReader::loadData(){
                 continue;
             }
 
-
             AudioFileInfo audioFileInfo;
             audioFileInfo.filePath = entry.path().string();
             audioFileInfo.data = std::move(buffer);
@@ -46,6 +43,4 @@ void FilesReader::loadData(){
     }
 }
 
-std::vector<AudioFileInfo> FilesReader::getData() const{
-    return musicStorage;
-}
+std::vector<AudioFileInfo> FilesReader::getData() const { return musicStorage; }
