@@ -5,9 +5,7 @@
 
 namespace fs = std::filesystem;
 
-FilesReader::FilesReader(Properties* properties) {
-    this->properties = properties;
-}
+FilesReader::FilesReader(Properties* properties) : properties(properties) {}
 
 void FilesReader::loadData(){
     const std::string folderPath = properties->getPath();
